@@ -24,8 +24,11 @@ public class ManejoArrayList2 {
         profesores[1] = prof2;
         
         for (int i = 0; i < profesores.length; i++) {
-        //    System.out.printf("%s - %s\n", profesores[i].obtenerNombre(),
-        //            profesores[i].obtenerTipo());
+            //System.out.printf("%s - %s\n", profesores[i].obtenerNombre(),
+            //        profesores[i].obtenerTipo());
+            Profesor p = profesores[i];
+            System.out.printf("%s - %s\n", p.obtenerNombre(),
+                    p.obtenerTipo());
         }
         
         System.out.println("-----------------------------");
@@ -40,12 +43,15 @@ public class ManejoArrayList2 {
         Profesor temporal = profesores2.get(0);
         System.out.println(temporal.obtenerTipo());
         
-        /*
+        
         for (int i = 0; i < profesores2.size(); i++) {
-            System.out.printf("%s - %s\n", profesores2.get(i).obtenerNombre(),
-                    profesores2.get(i).obtenerTipo());
+            //System.out.printf("%s - %s\n", profesores2.get(i).obtenerNombre(),
+            //        profesores2.get(i).obtenerTipo());
+            Profesor p = profesores2.get(i);
+            System.out.printf("%s - %s\n", p.obtenerNombre(),
+                    p.obtenerTipo());
         }
-        */
+        
         
         System.out.println("-----------------------------");
         
