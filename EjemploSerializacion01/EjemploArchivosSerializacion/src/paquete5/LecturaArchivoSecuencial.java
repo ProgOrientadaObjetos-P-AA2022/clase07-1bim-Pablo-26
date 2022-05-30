@@ -9,13 +9,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
 import java.util.ArrayList;
 
 public class LecturaArchivoSecuencial {
     private ObjectInputStream entrada;
     private ArrayList<Hospital> hospitales;
+    private String identificador;
     private String nombreArchivo;
+    private Hospital hospitalBuscado;
 
     public LecturaArchivoSecuencial(String n) {
         nombreArchivo = n;
@@ -62,6 +63,42 @@ public class LecturaArchivoSecuencial {
         }
 
     }
+    
+    public void establecerIdentificador(String n) {
+        identificador = n;
+    }
+    
+    public void establecerProfesorBuscado() {
+        // 
+        
+        File f = new File(obtenerNombreArchivo());
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Hospital registro = (Hospital) entrada.readObject();
+                    
+                    if(registro.obtenerNombre() == identificador){
+                        hospitalBuscado = registro;
+                        break;
+                    }
+                    
+                } catch (EOFException endOfFileException) {
+                    return; // se llegó al fin del archivo
+                    // se puede usar el break;
+                    // System.err.println("Fin de archivo: " + endOfFileException);
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
+            }
+        }
+    }
 
     public ArrayList<Hospital> obtenerHospitales() {
         return hospitales;
@@ -71,6 +108,14 @@ public class LecturaArchivoSecuencial {
         return nombreArchivo;
     }
 
+    public String obtenerIdentificador() {
+        return identificador;
+    }
+    
+    public Hospital obtenerProfesorBuscado() {
+        return hospitalBuscado;
+    }
+    
     @Override
     public String toString() {
         String cadena = "Hospitales \n";
